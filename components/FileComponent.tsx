@@ -103,7 +103,6 @@ export default function FileComponent() {
         {error && (
           <Card className="p-5 grid grid-row-2 gap-4">
             <CardTitle>Something went wrong</CardTitle>
-
             <CardDescription className="py-5 text-xl">{error}</CardDescription>
           </Card>
         )}

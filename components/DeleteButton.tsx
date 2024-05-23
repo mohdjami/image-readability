@@ -17,7 +17,7 @@ const DeleteButton = ({ url }: Props) => {
           method: "DELETE",
           body: JSON.stringify({ url }),
         });
-        router.push("/files");
+        router.refresh();
       }}
     >
       Delete
