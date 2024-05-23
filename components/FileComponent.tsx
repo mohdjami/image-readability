@@ -18,28 +18,36 @@ export default function FileComponent() {
   const [text, setText] = useState<any | null>(null);
   const [Level, setLevel] = useState("");
   const [loading, isLoading] = useState(false);
+  const [error, setError] = useState<any>();
+
   const handleSubmit = async (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-    isLoading(true);
-    if (!inputFileRef.current?.files) {
-      throw new Error("No file selected");
+    try {
+      event.preventDefault();
+      isLoading(true);
+      if (!inputFileRef.current?.files) {
+        throw new Error("No file selected");
+      }
+
+      const file = inputFileRef.current.files[0];
+
+      const response = await fetch(`/api/upload?filename=${file.name}`, {
+        method: "POST",
+        body: file,
+      });
+
+      const newBlob = (await response.json()) as PutBlobResult;
+
+      const res = await converter(newBlob?.url || "");
+      const level = await checkReadability(res!);
+      setText(res);
+      setLevel(level);
+      setBlob(newBlob);
+      isLoading(false);
+    } catch (error) {
+      console.log(error);
+      setError(error);
+      isLoading(false);
     }
-
-    const file = inputFileRef.current.files[0];
-
-    const response = await fetch(`/api/upload?filename=${file.name}`, {
-      method: "POST",
-      body: file,
-    });
-
-    const newBlob = (await response.json()) as PutBlobResult;
-
-    const res = await converter(newBlob?.url || "");
-    const level = await checkReadability(res!);
-    setText(res);
-    setLevel(level);
-    setBlob(newBlob);
-    isLoading(false);
   };
   return (
     <>
@@ -90,6 +98,13 @@ export default function FileComponent() {
               Image Visibility Level
             </CardDescription>
             <CardTitle>{Level}</CardTitle>
+          </Card>
+        )}
+        {error && (
+          <Card className="p-5 grid grid-row-2 gap-4">
+            <CardTitle>Something went wrong</CardTitle>
+
+            <CardDescription className="py-5 text-xl">{error}</CardDescription>
           </Card>
         )}
       </div>
