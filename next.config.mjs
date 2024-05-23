@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
-
 const nextConfig = {
   experimental: {
-    serverComponentsExternalPackages: ["@acme/ui"],
+    serverComponentsExternalPackages: ["tesseract.js"],
   },
 };
 

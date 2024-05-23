@@ -51,7 +51,9 @@ export default function FileComponent() {
           <form onSubmit={handleSubmit} className="flex">
             <Input name="file" ref={inputFileRef} type="file" required />
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <Button type="submit">{loading ? "Loading..." : "Upload"}</Button>
+            <Button type="submit">
+              {loading ? "Loading..." : "Check Readability"}
+            </Button>
             &nbsp;&nbsp;&nbsp;&nbsp;
           </form>
           <Link
