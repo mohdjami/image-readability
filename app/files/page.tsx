@@ -9,7 +9,6 @@ import Convert from "@/components/Convert";
 
 const Files = async () => {
   const { blobs } = await list();
-  blobs.forEach((blob) => console.log(blob.url));
   return (
     <section>
       {blobs.map((blob) => (
