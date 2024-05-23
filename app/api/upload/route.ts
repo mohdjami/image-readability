@@ -2,32 +2,23 @@ import { converter } from "@/lib/wroker";
 import { del, put } from "@vercel/blob";
 import { NextResponse } from "next/server";
 export async function POST(request: Request): Promise<NextResponse> {
-  const { searchParams } = new URL(request.url);
-  const filename = searchParams.get("filename") || "";
-  if (filename && request.body) {
-    // ⚠️ The below code is for App Router Route Handlers only
-    const blob = await put(filename, request.body, {
-      access: "public",
-    });
+  try {
+    const { searchParams } = new URL(request.url);
+    const filename = searchParams.get("filename") || "";
+    if (filename && request.body) {
+      const blob = await put(filename, request.body, {
+        access: "public",
+      });
 
-    // Here's the code for Pages API Routes:
-    // const blob = await put(filename, request, {
-    //   access: 'public',
-    // });
-    const data = await converter(blob.url);
-    console.log(data);
-    return NextResponse.json(blob);
-  } else {
-    return new NextResponse("No filename specified", { status: 400 });
+      return NextResponse.json(blob);
+    } else {
+      return new NextResponse("No filename specified", { status: 400 });
+    }
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ error });
   }
 }
-
-// The next lines are required for Pages API Routes only
-// export const config = {
-//   api: {
-//     bodyParser: false,
-//   },
-// };
 
 export async function DELETE(req: Request) {
   const { url } = await req.json();
