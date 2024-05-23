@@ -15,15 +15,5 @@ export async function checkReadability(text: string) {
     1.015 * (wordCount / sentenceCount) -
     84.6 * (syllableCount / wordCount);
 
-  if (fleschScore >= 90) {
-    return "Fully visible";
-  } else if (fleschScore >= 70) {
-    return "Fairly Visible";
-  } else if (fleschScore >= 60) {
-    return "Standard";
-  } else if (fleschScore >= 50) {
-    return "Difficult to Read";
-  } else {
-    return "Not visible";
-  }
+  return fleschScore;
 }
