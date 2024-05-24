@@ -9,7 +9,6 @@ import { Button, buttonVariants } from "./ui/button";
 import { Card, CardDescription, CardTitle } from "./ui/card";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { redirect } from "next/navigation";
 import { Label } from "./ui/label";
 
 export default function FileComponent() {
@@ -83,7 +82,7 @@ export default function FileComponent() {
             </CardDescription>
           </Card>
         )}
-        {text && (
+        {/* {text && (
           <Card className="p-5 grid gap-4">
             {" "}
             <CardTitle>Text Extracted</CardTitle>
@@ -91,7 +90,7 @@ export default function FileComponent() {
               {text}
             </CardDescription>{" "}
           </Card>
-        )}
+        )} */}
         {Level && (
           <Card className="p-5 grid grid-row-2 gap-4">
             <CardDescription className="py-5 text-xl">
