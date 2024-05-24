@@ -14,7 +14,7 @@ import { Label } from "./ui/label";
 export default function FileComponent() {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
-  // const [text, setText] = useState<any | null>(null);
+  const [text, setText] = useState<any | null>(null);
   const [Level, setLevel] = useState("");
   const [loading, isLoading] = useState(false);
   const [error, setError] = useState<any>();
@@ -39,6 +39,7 @@ export default function FileComponent() {
       const res = await converter(newBlob?.url || "");
       const level = await checkReadability(res!);
       setLevel(level);
+      setText(res);
       setBlob(newBlob);
       isLoading(false);
     } catch (error) {
@@ -81,7 +82,7 @@ export default function FileComponent() {
             </CardDescription>
           </Card>
         )}
-        {/* {text && (
+        {text && (
           <Card className="p-5 grid gap-4">
             {" "}
             <CardTitle>Text Extracted</CardTitle>
@@ -89,7 +90,7 @@ export default function FileComponent() {
               {text}
             </CardDescription>{" "}
           </Card>
-        )} */}
+        )}
         {Level && (
           <Card className="p-5 grid grid-row-2 gap-4">
             <CardDescription className="py-5 text-xl">
