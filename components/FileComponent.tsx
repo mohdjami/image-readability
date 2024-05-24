@@ -16,7 +16,7 @@ export default function FileComponent() {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
   const [text, setText] = useState<any | null>(null);
-  const [Level, setLevel] = useState(Number);
+  const [Level, setLevel] = useState("");
   const [loading, isLoading] = useState(false);
   const [error, setError] = useState<any>();
 
