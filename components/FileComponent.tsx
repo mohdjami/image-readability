@@ -38,7 +38,6 @@ export default function FileComponent() {
 
       const res = await converter(newBlob?.url || "");
       const level = await checkReadability(res!);
-      setText(res);
       setLevel(level);
       setBlob(newBlob);
       isLoading(false);
