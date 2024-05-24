@@ -15,5 +15,8 @@ export async function checkReadability(text: string) {
     1.015 * (wordCount / sentenceCount) -
     84.6 * (syllableCount / wordCount);
 
-  return fleschScore;
+  if (fleschScore < 30) {
+    return "The text is very difficult to read";
+  }
+  return "Image is readable";
 }
