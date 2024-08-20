@@ -55,8 +55,8 @@ export default function FileComponent() {
         <Label className="text-center text-4xl">
           Image Readability Checker
         </Label>
-        <div className="grid lg:grid-rows-3">
-          <form onSubmit={handleSubmit} className="flex">
+        <div className="grid lg:grid-rows-3 gap-4">
+          <form onSubmit={handleSubmit} className="grid lg:grid-rows-2 gap-4">
             <Input name="file" ref={inputFileRef} type="file" required />
             &nbsp;&nbsp;&nbsp;&nbsp;
             <Button type="submit">
