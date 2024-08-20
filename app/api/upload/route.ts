@@ -1,4 +1,3 @@
-import { converter } from "@/lib/wroker";
 import { del, put } from "@vercel/blob";
 import { NextResponse } from "next/server";
 export async function POST(request: Request): Promise<NextResponse> {
@@ -9,7 +8,6 @@ export async function POST(request: Request): Promise<NextResponse> {
       const blob = await put(filename, request.body, {
         access: "public",
       });
-
       return NextResponse.json(blob);
     } else {
       return new NextResponse("No filename specified", { status: 400 });

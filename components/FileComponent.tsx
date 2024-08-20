@@ -50,11 +50,12 @@ export default function FileComponent() {
   };
   return (
     <>
+      <CardTitle className="">Please use only Text Images</CardTitle>
       <div className="grid gap-4 py-8">
         <Label className="text-center text-4xl">
           Image Readability Checker
         </Label>
-        <div className="flex">
+        <div className="grid lg:grid-rows-3">
           <form onSubmit={handleSubmit} className="flex">
             <Input name="file" ref={inputFileRef} type="file" required />
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -71,7 +72,7 @@ export default function FileComponent() {
           </Link>
         </div>{" "}
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-2 gap-4">
         {blob && (
           <Card className="p-5 grid gap-4">
             <CardTitle className="flex gap-4">
