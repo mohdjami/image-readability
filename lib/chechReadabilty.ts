@@ -16,7 +16,7 @@ export async function checkReadability(text: string) {
     84.6 * (syllableCount / wordCount);
 
   if (fleschScore < 30) {
-    return "The text is very difficult to read";
+    return { Level: "The text is very difficult to read", Score: fleschScore };
   }
-  return "Image is readable";
+  return { Level: "Image is readable", Score: fleschScore };
 }
